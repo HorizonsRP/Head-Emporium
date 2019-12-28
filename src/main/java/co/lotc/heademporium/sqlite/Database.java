@@ -28,7 +28,9 @@ public abstract class Database {
 
 	public abstract void load();
 
-	public abstract void setToken(int id, String catOrApprov, String nameOrReq, String texture, int priceOrAmount);
+	public abstract void setToken(int id, String catOrApprov, String nameOrReq, String texture, float priceOrAmount);
+
+	public abstract void removeTokenByTexture(String texture);
 
 	public String getTable() {
 		return SQLiteTableName;

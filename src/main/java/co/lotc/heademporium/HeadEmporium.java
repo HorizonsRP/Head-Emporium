@@ -233,8 +233,24 @@ public final class HeadEmporium extends JavaPlugin {
 		return item;
 	}
 
+	// Texture from player's hands.
+	public static String getTextureFromPlayer(Player p) {
+		ItemStack skull = null;
+		if (p.getInventory().getItemInMainHand().getType() == Material.PLAYER_HEAD) {
+			skull = p.getInventory().getItemInMainHand();
+		} else if (p.getInventory().getItemInOffHand().getType() == Material.PLAYER_HEAD) {
+			skull = p.getInventory().getItemInOffHand();
+		}
+
+		return HeadEmporium.getTextureFromItem(skull);
+	}
+
 	// Texture from Head Item
-	public static String getTexture(ItemStack item) {
+	public static String getTextureFromItem(ItemStack item) {
+		if (item == null) {
+			return null;
+		}
+
 		String texture = null;
 		if (item.getItemMeta() instanceof SkullMeta) {
 			SkullMeta meta = (SkullMeta) item.getItemMeta();

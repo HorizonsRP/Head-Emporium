@@ -70,7 +70,7 @@ public class ReqsSQL extends Database{
 	}
 
 	// Save info
-	public void setToken(int id, String catOrApprov, String nameOrReq, String texture, int priceOrAmount) {
+	public void setToken(int id, String catOrApprov, String nameOrReq, String texture, float priceOrAmount) {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		String stmt;
@@ -83,7 +83,29 @@ public class ReqsSQL extends Database{
 			ps.setString(2, catOrApprov);
 			ps.setString(3, nameOrReq);
 			ps.setString(4, texture);
-			ps.setInt(5, priceOrAmount);
+			ps.setInt(5, (int) priceOrAmount*100);
+			ps.executeUpdate();
+		} catch (SQLException ex) {
+			plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+			} catch (SQLException ex) {
+				plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionClose(), ex);
+			}
+		}
+	}
+
+	// Remove by texture
+	public void removeTokenByTexture(String texture) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			conn = getSQLConnection();
+			String stmt = "DELETE FROM " + SQLiteTableName + " WHERE TEXTURE=" + texture + ";";
+			ps = conn.prepareStatement(stmt);
 			ps.executeUpdate();
 		} catch (SQLException ex) {
 			plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);

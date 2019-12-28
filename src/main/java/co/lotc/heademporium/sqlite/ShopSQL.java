@@ -10,6 +10,7 @@ import co.lotc.heademporium.HeadEmporium; // import your main class
 public class ShopSQL extends Database{
 	private String dbname;
 	private String SQLiteTokensTable;
+	private int totalId = 0;
 
 	public ShopSQL(HeadEmporium instance){
 		super(instance, "shop_table");
@@ -76,6 +77,11 @@ public class ShopSQL extends Database{
 			stmt = "SELECT * FROM " + SQLiteTableName + ";";
 			PreparedStatement ps = connection.prepareStatement(stmt);
 			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				if (rs.getInt("ID") >= totalId) {
+					totalId = rs.getInt("ID") + 1;
+				}
+			}
 			close(ps, rs);
 		} catch (SQLException ex) {
 			plugin.getLogger().log(Level.SEVERE, "Unable to retreive connection", ex);
@@ -83,7 +89,7 @@ public class ShopSQL extends Database{
 	}
 
 	// Retrieve info
-	public String getToken(String id, String column, boolean fromShop) {
+	public String getToken(String id, String column) {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -115,7 +121,10 @@ public class ShopSQL extends Database{
 	}
 
 	// Save info
-	public void setToken(int id, String catOrApprov, String nameOrReq, String texture, int priceOrAmount) {
+	public void setToken(int id, String catOrApprov, String nameOrReq, String texture, float priceOrAmount) {
+		if (id == -1) {
+			id = totalId;
+		}
 		Connection conn = null;
 		PreparedStatement ps = null;
 		String stmt;
@@ -128,8 +137,9 @@ public class ShopSQL extends Database{
 			ps.setString(2, catOrApprov);
 			ps.setString(3, nameOrReq);
 			ps.setString(4, texture);
-			ps.setInt(5, priceOrAmount);
+			ps.setInt(5, (int) priceOrAmount*100);
 			ps.executeUpdate();
+			totalId++;
 		} catch (SQLException ex) {
 			plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
 		} finally {
@@ -143,14 +153,13 @@ public class ShopSQL extends Database{
 	}
 
 	// Remove info
-	public void removeToken(int id, boolean setShop) {
+	public void removeToken(int id) {
 		Connection conn = null;
 		PreparedStatement ps = null;
 
 		try {
 			conn = getSQLConnection();
-			String stmt;
-			stmt = "DELETE FROM " + SQLiteTableName + " WHERE ID=" + id + ";";
+			String stmt = "DELETE FROM " + SQLiteTableName + " WHERE ID=" + id + ";";
 			ps = conn.prepareStatement(stmt);
 			ps.executeUpdate();
 		} catch (SQLException ex) {
@@ -164,4 +173,27 @@ public class ShopSQL extends Database{
 			}
 		}
 	}
+
+	// Remove by texture
+	public void removeTokenByTexture(String texture) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			conn = getSQLConnection();
+			String stmt = "DELETE FROM " + SQLiteTableName + " WHERE TEXTURE=" + texture + ";";
+			ps = conn.prepareStatement(stmt);
+			ps.executeUpdate();
+		} catch (SQLException ex) {
+			plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+			} catch (SQLException ex) {
+				plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionClose(), ex);
+			}
+		}
+	}
+
 }

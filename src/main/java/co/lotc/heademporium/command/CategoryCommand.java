@@ -49,20 +49,10 @@ public class CategoryCommand extends BaseCommand {
 		}
 
 		String newTexture = texture;
-
 		if (newTexture == null) {
 			if (sender instanceof Player) {
-				Player p = (Player) sender;
-				ItemStack skull = null;
-				if (p.getInventory().getItemInMainHand().getType() == Material.PLAYER_HEAD) {
-					skull = p.getInventory().getItemInMainHand();
-				} else if (p.getInventory().getItemInOffHand().getType() == Material.PLAYER_HEAD) {
-					skull = p.getInventory().getItemInOffHand();
-				}
-
-				if (skull != null) {
-					newTexture = HeadEmporium.getTexture(skull);
-				} else {
+				newTexture = HeadEmporium.getTextureFromPlayer((Player) sender);
+				if (newTexture == null) {
 					msg(HeadEmporium.PREFIX + "Please specify a texture value or hold a head in your hand.");
 					return;
 				}
@@ -72,12 +62,8 @@ public class CategoryCommand extends BaseCommand {
 			}
 		}
 
-		if (newTexture != null) {
-			category.setIcon(newTexture);
-			msg(HeadEmporium.PREFIX + "Successfully updated " + HeadEmporium.ALT_COLOR + category.getName() + "'s " + HeadEmporium.PREFIX + "texture.");
-		} else {
-			msg(HeadEmporium.PREFIX + "Unable to get the texture from the head you're holding.");
-		}
+		category.setIcon(newTexture);
+		msg(HeadEmporium.PREFIX + "Successfully updated " + HeadEmporium.ALT_COLOR + category.getName() + "'s " + HeadEmporium.PREFIX + "texture.");
 	}
 
 	@Cmd(value="Sets the texture of a category to the default chest.")

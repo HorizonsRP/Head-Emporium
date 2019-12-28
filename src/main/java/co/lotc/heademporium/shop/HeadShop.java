@@ -76,6 +76,36 @@ public class HeadShop {
 
 	//// MENUS ////
 
+	public Icon getAsShopIcon(String texture, String name, float price) {
+		String currency = ArcheCore.getEconomyControls().currencyNamePlural();
+		if (price == 1f) {
+			currency = ArcheCore.getEconomyControls().currencyNameSingular();
+		}
+
+		ItemStack item = HeadEmporium.getHead(texture, 1);
+		ItemMeta meta = item.getItemMeta();
+		ArrayList<String> lore = new ArrayList<>();
+
+		lore.add(ChatColor.GOLD + "Price: " + String.format("%.02f", price) + " " + currency);
+		meta.setLore(lore);
+		meta.setDisplayName(name);
+		item.setItemMeta(meta);
+
+		Icon icon = new Button() {
+			@Override
+			public ItemStack getItemStack(MenuAgent menuAgent) {
+				return item;
+			}
+
+			@Override
+			public void click(MenuAction menuAction) {
+				amountMenu(item, price, menuAction).openSession(menuAction.getPlayer());
+			}
+		};
+
+		return icon;
+	}
+
 	// Creates and fills our categories array.
 	private void loadCategories() throws SQLException {
 		ResultSet rsCategories = conn.prepareStatement("SELECT * FROM " + HeadEmporium.getCataDb().getTable() + " ORDER BY NAME ASC").executeQuery();
@@ -93,35 +123,11 @@ public class HeadShop {
 
 			// Add heads to the category object
 			while (rsHeads.next()) {
+				String texture = rsHeads.getString("TEXTURE");
+				String name = rsHeads.getString("NAME");
 				float price = rsHeads.getInt("PRICE")/100f;
 
-				String currency = ArcheCore.getEconomyControls().currencyNamePlural();
-				if (price == 1f) {
-					currency = ArcheCore.getEconomyControls().currencyNameSingular();
-				}
-
-				ItemStack item = HeadEmporium.getHead(rsHeads.getString("TEXTURE"), 1);
-				ItemMeta meta = item.getItemMeta();
-				ArrayList<String> lore = new ArrayList<>();
-
-				lore.add(ChatColor.GOLD + "Price: " + String.format("%.02f", price) + " " + currency);
-				meta.setLore(lore);
-				meta.setDisplayName(rsHeads.getString("NAME"));
-				item.setItemMeta(meta);
-
-				Icon icon = new Button() {
-					@Override
-					public ItemStack getItemStack(MenuAgent menuAgent) {
-						return item;
-					}
-
-					@Override
-					public void click(MenuAction menuAction) {
-						amountMenu(item, price, menuAction).openSession(menuAction.getPlayer());
-					}
-				};
-
-				category.addHead(icon);
+				category.addHead(getAsShopIcon(texture, name, price));
 			}
 		}
 	}
@@ -150,7 +156,7 @@ public class HeadShop {
 		}
 	}
 
-	private Menu amountMenu(ItemStack item, float price, MenuAction action) {
+	public Menu amountMenu(ItemStack item, float price, MenuAction action) {
 		ArrayList<Icon> icons = new ArrayList<>();
 
 		for (int i = 1; i <= 18; i++) {
