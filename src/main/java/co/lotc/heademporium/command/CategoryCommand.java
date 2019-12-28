@@ -20,7 +20,8 @@ public class CategoryCommand extends BaseCommand {
 	@Cmd(value="Create a new head shop category.")
 	public void create(@Arg(value="Category Name", description="Name the new category will display.")String name,
 					   @Arg(value="Base64 String", description="The value code for a head texture.")@Default(value=HeadEmporium.DEFAULT_TEXTURE)String texture) {
-		if (HeadEmporium.getHeadShop().generateCategory(WordUtils.capitalizeFully(name), texture)) {
+		String newName = name.replaceAll("_", " ");
+		if (HeadEmporium.getHeadShop().generateCategory(WordUtils.capitalizeFully(newName), texture)) {
 			msg(HeadEmporium.PREFIX + "Head Shop category " + HeadEmporium.ALT_COLOR + WordUtils.capitalizeFully(name) + HeadEmporium.PREFIX + " successfully created.");
 		} else {
 			msg(HeadEmporium.PREFIX + "There already exists a category by that name.");
@@ -35,7 +36,8 @@ public class CategoryCommand extends BaseCommand {
 
 	@Cmd(value="Renames a category.")
 	public void rename(@Arg(value="Original Name", description="Current name of the category.")ShopCategory category,
-					   @Arg(value="New Name", description="Name to assign the category.")String newName) {
+					   @Arg(value="New Name", description="Name to assign the category.")String name) {
+		String newName = name.replaceAll("_", " ");
 		msg(HeadEmporium.PREFIX + "Head Shop category " + HeadEmporium.ALT_COLOR + category.getName() + HeadEmporium.PREFIX + " successfully renamed to " + HeadEmporium.ALT_COLOR + WordUtils.capitalizeFully(newName) + HeadEmporium.PREFIX + ".");
 		category.setName(WordUtils.capitalizeFully(newName));
 	}

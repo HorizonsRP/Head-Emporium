@@ -75,8 +75,6 @@ public abstract class Database {
 			try {
 				if (ps != null)
 					ps.close();
-				if (conn != null)
-					conn.close();
 			} catch (SQLException ex) {
 				plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionClose(), ex);
 			}
@@ -101,8 +99,6 @@ public abstract class Database {
 			try {
 				if (ps != null)
 					ps.close();
-				if (conn != null)
-					conn.close();
 			} catch (SQLException ex) {
 				plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionClose(), ex);
 			}

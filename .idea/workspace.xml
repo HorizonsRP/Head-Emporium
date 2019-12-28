@@ -4,22 +4,13 @@
     <list default="true" id="a4a2f0bc-8902-41fe-8c9e-2aaef7c7a4e6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/HeadEmporium.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/HeadEmporium.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/command/HeadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/command/HeadCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/shop/HeadShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/shop/HeadShop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/shop/ShopCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/shop/ShopCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/sqlite/CategorySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/sqlite/CategorySQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/command/CategoryCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/command/CategoryCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/sqlite/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/sqlite/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/sqlite/ReqsSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/sqlite/ReqsSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/sqlite/ShopSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/sqlite/ShopSQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/HeadEmporium-1.15-R0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/HeadEmporium-1.15-R0.1.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/HeadEmporium.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/HeadEmporium.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/command/CategoryCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/command/CategoryCommand.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/command/HeadCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/command/HeadCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/shop/HeadShop.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/shop/HeadShop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/shop/ShopCategory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/shop/ShopCategory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/sqlite/CategorySQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/sqlite/CategorySQL.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/sqlite/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/sqlite/Database.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/sqlite/ReqsSQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/sqlite/ReqsSQL.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/sqlite/ShopSQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/sqlite/ShopSQL.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

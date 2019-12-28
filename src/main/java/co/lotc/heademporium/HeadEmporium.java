@@ -129,7 +129,7 @@ public final class HeadEmporium extends JavaPlugin {
 						ps = conn.prepareStatement("SELECT * FROM " + catadb.getTable() + " ORDER BY ID DESC");
 						ResultSet rs = ps.executeQuery();
 						totalId = rs.getInt("ID") + 1;
-						rs.close();
+						Database.close(ps, rs);
 					} catch (Exception e) {
 						this.getLogger().warning("UNABLE TO GET HIGHEST ID NUMBER. DEFAULTING TO 0.");
 						if (DEBUGGING) {
