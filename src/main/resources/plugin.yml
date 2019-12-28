@@ -1,0 +1,29 @@
+name: HeadEmporium
+version: ${project.version}
+main: co.lotc.heademporium.HeadEmporium
+api-version: 1.13
+depend: [Tythan, ArcheCore]
+commands:
+  heads:
+    command: /<command>
+    description: "Main command of the Head Emporium plugin."
+permissions:
+  head.buy:
+    default: true
+    description: Allows the user to purchase from the head shop.
+  head.request:
+    default: true
+    description: Allows the user to request a head from another user.
+  head.free:
+    default: op
+    description: Makes all head purchases free for the user.
+  head.spawn:
+    default: op
+    description: Allows the user to spawn in a head without approval.
+  head.mod:
+    default: op
+    description: Allows the user to moderate head approvals.
+    children:
+      head.buy: true
+      head.spawn: true
+      head.request: true
