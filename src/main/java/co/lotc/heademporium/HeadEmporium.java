@@ -141,6 +141,7 @@ public final class HeadEmporium extends JavaPlugin {
 						String name = oldConfig.getString("categories." + key);
 
 						try {
+							ps = conn.prepareStatement("SELECT * FROM " + catadb.getTable() + " ORDER BY ID DESC");
 							ResultSet rs = ps.executeQuery();
 							boolean duplicate = false;
 							while (rs.next()) {
@@ -174,7 +175,7 @@ public final class HeadEmporium extends JavaPlugin {
 						String texture = oldConfig.getString("heads." + key + ".data");
 						String price = oldConfig.getString("heads." + key + ".price");
 						assert price != null;
-						shopdb.setToken(Integer.parseInt(key), category, name, texture, (int) (Float.parseFloat(price)*100));
+						shopdb.setToken(Integer.parseInt(key), category, name, texture, Float.parseFloat(price));
 					}
 				}
 

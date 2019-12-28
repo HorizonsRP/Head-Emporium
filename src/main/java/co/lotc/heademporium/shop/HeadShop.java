@@ -125,7 +125,7 @@ public class HeadShop {
 			while (rsHeads.next()) {
 				String texture = rsHeads.getString("TEXTURE");
 				String name = rsHeads.getString("NAME");
-				float price = rsHeads.getInt("PRICE")/100f;
+				float price = rsHeads.getFloat("PRICE");
 
 				category.addHead(getAsShopIcon(texture, name, price));
 			}

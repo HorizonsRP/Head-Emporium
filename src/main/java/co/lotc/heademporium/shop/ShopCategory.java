@@ -52,7 +52,7 @@ public class ShopCategory {
 			stmt.setString(1, name);
 			ResultSet rsHeads = stmt.executeQuery();
 			while (rsHeads.next()) {
-				HeadEmporium.getShopDb().setToken(rsHeads.getInt("ID"), newCategory, rsHeads.getString("NAME"), rsHeads.getString("TEXTURE"), rsHeads.getInt("PRICE"));
+				HeadEmporium.getShopDb().setToken(rsHeads.getInt("ID"), newCategory, rsHeads.getString("NAME"), rsHeads.getString("TEXTURE"), rsHeads.getFloat("PRICE"));
 			}
 		}catch (Exception e) {
 			HeadEmporium.get().getLogger().warning("Failed to carry over heads to new category.");

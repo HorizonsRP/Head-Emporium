@@ -3,6 +3,7 @@ package co.lotc.heademporium.sqlite;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 import co.lotc.heademporium.HeadEmporium; // import your main class
@@ -20,7 +21,7 @@ public class ShopSQL extends Database{
 							"    CATEGORY TEXT NOT NULL,\n" +
 							"    NAME TEXT NOT NULL,\n" +
 							"    TEXTURE TEXT NOT NULL,\n" +
-							"    PRICE INTEGER NOT NULL\n" +
+							"    PRICE NUM NOT NULL\n" +
 							");";
 	}
 
@@ -137,7 +138,7 @@ public class ShopSQL extends Database{
 			ps.setString(2, catOrApprov);
 			ps.setString(3, nameOrReq);
 			ps.setString(4, texture);
-			ps.setInt(5, (int) priceOrAmount*100);
+			ps.setFloat(5, priceOrAmount);
 			ps.executeUpdate();
 			totalId++;
 		} catch (SQLException ex) {
@@ -174,26 +175,37 @@ public class ShopSQL extends Database{
 		}
 	}
 
-	// Remove by texture
-	public void removeTokenByTexture(String texture) {
+	// Get IDs by Texture
+	public ArrayList<Integer> getTokenIDsByTexture(String texture) {
 		Connection conn = null;
 		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<Integer> ids = new ArrayList<>();
 
 		try {
 			conn = getSQLConnection();
-			String stmt = "DELETE FROM " + SQLiteTableName + " WHERE TEXTURE=" + texture + ";";
+			String stmt = "SELECT * FROM " + SQLiteTableName + ";";
 			ps = conn.prepareStatement(stmt);
-			ps.executeUpdate();
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				if (rs.getString("TEXTURE").equals(texture)) {
+					ids.add(rs.getInt("ID"));
+				}
+			}
 		} catch (SQLException ex) {
 			plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
 		} finally {
 			try {
 				if (ps != null)
 					ps.close();
+				if (rs != null)
+					rs.close();
 			} catch (SQLException ex) {
 				plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionClose(), ex);
 			}
 		}
+
+		return ids;
 	}
 
 }

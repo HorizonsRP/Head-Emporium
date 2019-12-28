@@ -3,6 +3,7 @@ package co.lotc.heademporium.sqlite;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 import co.lotc.heademporium.HeadEmporium; // import your main class
@@ -97,26 +98,37 @@ public class CategorySQL extends Database{
 		}
 	}
 
-	// Remove by texture
-	public void removeTokenByTexture(String texture) {
+	// Get IDs by Texture
+	public ArrayList<Integer> getTokenIDsByTexture(String texture) {
 		Connection conn = null;
 		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<Integer> ids = new ArrayList<>();
 
 		try {
 			conn = getSQLConnection();
-			String stmt = "DELETE FROM " + SQLiteTableName + " WHERE TEXTURE=" + texture + ";";
+			String stmt = "SELECT * FROM " + SQLiteTableName + ";";
 			ps = conn.prepareStatement(stmt);
-			ps.executeUpdate();
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				if (rs.getString("TEXTURE").equals(texture)) {
+					ids.add(rs.getInt("ID"));
+				}
+			}
 		} catch (SQLException ex) {
 			plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
 		} finally {
 			try {
 				if (ps != null)
 					ps.close();
+				if (rs != null)
+					rs.close();
 			} catch (SQLException ex) {
 				plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionClose(), ex);
 			}
 		}
+
+		return ids;
 	}
 
 }

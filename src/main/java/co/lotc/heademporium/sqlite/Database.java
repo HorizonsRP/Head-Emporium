@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.logging.Level;
 
@@ -30,7 +31,7 @@ public abstract class Database {
 
 	public abstract void setToken(int id, String catOrApprov, String nameOrReq, String texture, float priceOrAmount);
 
-	public abstract void removeTokenByTexture(String texture);
+	public abstract ArrayList<Integer> getTokenIDsByTexture(String texture);
 
 	public String getTable() {
 		return SQLiteTableName;
@@ -50,7 +51,7 @@ public abstract class Database {
 	}
 
 	// Retrieve info
-	public String getToken(String id, String column, boolean fromShop) {
+	public String getToken(String id, String column) {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
