@@ -47,7 +47,7 @@ public class HeadCommand extends BaseCommand {
 		}
 
 		try {
-			String newName = name.replaceAll("_", "");
+			String newName = name.replaceAll("_", " ");
 			Icon icon = HeadEmporium.getHeadShop().getAsShopIcon(newTexture, WordUtils.capitalizeFully(newName), price);
 			HeadEmporium.getShopDb().setToken(-1, category.getName(), WordUtils.capitalizeFully(newName), newTexture, price);
 			category.addHead(icon);
