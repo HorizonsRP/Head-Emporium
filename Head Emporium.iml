@@ -41,7 +41,6 @@
     <orderEntry type="library" name="Maven: co.lotc:tythan-bukkit:1.15.1-R0.1" level="project" />
     <orderEntry type="library" name="Maven: co.lotc:tythan-common:1.15.1-R0.1" level="project" />
     <orderEntry type="library" name="Maven: com.comphenix.protocol:ProtocolLib:4.5.0" level="project" />
-    <orderEntry type="library" name="Maven: com.github.jengelman.gradle.plugins:shadow:2.0.4" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-all:4.0.23.Final" level="project" />
     <orderEntry type="library" name="Maven: org.spigotmc:spigot-api:1.14-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.spigotmc:spigot:1.14-R0.1-SNAPSHOT" level="project" />
