@@ -6,7 +6,7 @@
 
     <groupId>co.lotc</groupId>
     <artifactId>HeadEmporium</artifactId>
-    <version>1.15-R0.1</version>
+    <version>1.15.1-R0.1</version>
     <packaging>jar</packaging>
 
     <name>HeadEmporium</name>
@@ -52,18 +52,18 @@
         <dependency>
             <groupId>com.destroystokyo.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.15-R0.1-SNAPSHOT</version>
+            <version>1.15.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>net.lordofthecraft.arche</groupId>
             <artifactId>ArcheCore</artifactId>
-            <version>1.15-R0.1</version>
+            <version>1.15.1-R0.1</version>
         </dependency>
         <dependency>
             <groupId>co.lotc</groupId>
             <artifactId>tythan-bukkit</artifactId>
-            <version>1.15-R0.1</version>
+            <version>1.15.1-R0.1</version>
         </dependency>
         <dependency>
             <groupId>com.comphenix.protocol</groupId>
