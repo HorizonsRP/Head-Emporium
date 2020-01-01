@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4a2f0bc-8902-41fe-8c9e-2aaef7c7a4e6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_destroystokyo_paper_paper_api_1_15_1_R0_1_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_25.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/command/MainCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/command/MainCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/HeadEmporium.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/HeadEmporium.jar" afterDir="false" />

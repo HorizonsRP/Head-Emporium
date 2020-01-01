@@ -68,7 +68,7 @@ public class MainCommand extends BaseCommand {
 			try {
 				if (HeadEmporium.safeCharge(player, amount * HeadEmporium.BASE_PRICE)) {
 					UUID uuid = MojangCommunicator.requestPlayerUUID(playername);
-					String skin = ProtocolUtil.requestSkin(uuid).getValue();
+					String skin = null;
 
 					Player otherPlayer = Bukkit.getPlayer(uuid);
 					if (otherPlayer != null) {
@@ -76,6 +76,10 @@ public class MainCommand extends BaseCommand {
 						if (newSkin != null) {
 							skin = newSkin;
 						}
+					}
+
+					if (skin == null) {
+						skin = ProtocolUtil.requestSkin(uuid).getValue();
 					}
 
 					if (HeadEmporium.DEBUGGING) {
