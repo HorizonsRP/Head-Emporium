@@ -86,11 +86,21 @@ public class MainCommand extends BaseCommand {
 				}
 			} catch (NullPointerException npe) {
 				msg(HeadEmporium.PREFIX + "Unable to find a player by that name.");
+				if (HeadEmporium.safeCharge(player, -(amount * HeadEmporium.BASE_PRICE))) {
+					msg(HeadEmporium.PREFIX + "Your minas have been refunded.");
+				} else {
+					msg(HeadEmporium.PREFIX + "Unable to refund your minas.");
+				}
 				if (HeadEmporium.DEBUGGING) {
 					npe.printStackTrace();
 				}
 			} catch (Exception e) {
 				msg(HeadEmporium.PREFIX + "That head has been requested too frequently! Please wait a moment.");
+				if (HeadEmporium.safeCharge(player, -(amount * HeadEmporium.BASE_PRICE))) {
+					msg(HeadEmporium.PREFIX + "Your minas have been refunded.");
+				} else {
+					msg(HeadEmporium.PREFIX + "Unable to refund your minas.");
+				}
 				if (HeadEmporium.DEBUGGING) {
 					e.printStackTrace();
 				}
