@@ -9,6 +9,7 @@ import co.lotc.core.util.MojangCommunicator;
 import co.lotc.heademporium.HeadEmporium;
 import co.lotc.heademporium.HeadRequest;
 import net.lordofthecraft.arche.ArcheCore;
+import net.lordofthecraft.arche.interfaces.Persona;
 import net.lordofthecraft.arche.util.ProtocolUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -20,6 +21,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class MainCommand extends BaseCommand {
@@ -71,8 +73,12 @@ public class MainCommand extends BaseCommand {
 						plugin.getLogger().info("UUID: " + uuid + " | SKIN: " + skin);
 					}
 
-					if (Bukkit.getPlayer(uuid) != null && ArcheCore.getPersona(Bukkit.getPlayer(uuid)).hasSkin()) {
-						skin = ArcheCore.getPersona(Bukkit.getPlayer(uuid)).getSkin().toString();
+					Player otherPlayer = Bukkit.getPlayer(uuid);
+					if (otherPlayer != null) {
+						String newSkin = ArcheCore.getControls().getSkinCache().getCurrentSkinString(otherPlayer);
+						if (newSkin != null) {
+							skin = newSkin;
+						}
 					}
 
 					if (hasFlag("o") || HeadRequest.samePerson(player, uuid)) {
