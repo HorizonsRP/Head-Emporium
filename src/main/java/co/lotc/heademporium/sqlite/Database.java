@@ -33,6 +33,10 @@ public abstract class Database {
 
 	public abstract ArrayList<Integer> getTokenIDsByTexture(String texture);
 
+	public String purge() {
+		return "This database does not have purge handling set.";
+	}
+
 	public String getTable() {
 		return SQLiteTableName;
 	}

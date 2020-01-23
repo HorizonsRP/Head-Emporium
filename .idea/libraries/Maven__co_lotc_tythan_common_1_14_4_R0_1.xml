@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: co.lotc:tythan-common:1.14.4-R0.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/co/lotc/tythan-common/1.14.4-R0.1/tythan-common-1.14.4-R0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/co/lotc/tythan-common/1.14.4-R0.1/tythan-common-1.14.4-R0.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/co/lotc/tythan-common/1.14.4-R0.1/tythan-common-1.14.4-R0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

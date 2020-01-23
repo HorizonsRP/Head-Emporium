@@ -77,18 +77,18 @@
         <dependency>
             <groupId>com.destroystokyo.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.15.1-R0.1-SNAPSHOT</version>
+            <version>${version}-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>net.lordofthecraft.arche</groupId>
             <artifactId>ArcheCore</artifactId>
-            <version>1.15.1-R0.1</version>
+            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>co.lotc</groupId>
             <artifactId>tythan-bukkit</artifactId>
-            <version>1.15.1-R0.1</version>
+            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>com.comphenix.protocol</groupId>

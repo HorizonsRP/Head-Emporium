@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.UUID;
 import java.util.logging.Level;
 
 import co.lotc.heademporium.HeadEmporium; // import your main class
+import co.lotc.heademporium.HeadRequest;
 
 public class ReqsSQL extends Database{
 	private String dbname;
@@ -70,19 +72,39 @@ public class ReqsSQL extends Database{
 		initialize();
 	}
 
+	public void initialize(){
+		connection = getSQLConnection();
+		try {
+			String stmt;
+			stmt = "SELECT * FROM " + SQLiteTableName + ";";
+			PreparedStatement ps = connection.prepareStatement(stmt);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				new HeadRequest(rs.getInt("ID"),
+								rs.getInt("REQUESTER"),
+								rs.getString("TEXTURE"),
+								rs.getInt("AMOUNT"),
+								rs.getString("APPROVER"));
+			}
+			close(ps, rs);
+		} catch (SQLException ex) {
+			plugin.getLogger().log(Level.SEVERE, "Unable to retreive connection", ex);
+		}
+	}
+
 	// Save info
 	public void setToken(int id, String catOrApprov, String nameOrReq, String texture, float priceOrAmount) {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		String stmt;
-		stmt = "INSERT OR REPLACE INTO " + SQLiteTableName + " (ID,APPROVER,REQUESTER,TEXTURE,AMOUNT) VALUES(?,?,?,?,?)";
+		stmt = "INSERT INTO " + SQLiteTableName + " (ID,APPROVER,REQUESTER,TEXTURE,AMOUNT) VALUES(?,?,?,?,?)";
 
 		try {
 			conn = getSQLConnection();
 			ps = conn.prepareStatement(stmt);
 			ps.setInt(1, id);
 			ps.setString(2, catOrApprov);
-			ps.setString(3, nameOrReq);
+			ps.setInt(3, Integer.parseInt(nameOrReq));
 			ps.setString(4, texture);
 			ps.setInt(5, (int) priceOrAmount);
 			ps.executeUpdate();
@@ -129,6 +151,30 @@ public class ReqsSQL extends Database{
 		}
 
 		return ids;
+	}
+
+	// Purge Requests
+	public String purge() {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		String stmt;
+		stmt = "DELETE FROM " + SQLiteTableName + ";";
+
+		try {
+			conn = getSQLConnection();
+			ps = conn.prepareStatement(stmt);
+			ps.executeUpdate();
+		} catch (SQLException ex) {
+			plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+			} catch (SQLException ex) {
+				plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionClose(), ex);
+			}
+		}
+		return "All requests have been purged.";
 	}
 
 }

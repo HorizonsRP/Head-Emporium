@@ -6,16 +6,15 @@ import com.comphenix.protocol.wrappers.WrappedSignedProperty;
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
 import net.lordofthecraft.arche.ArcheCore;
-import net.lordofthecraft.arche.interfaces.Account;
-import net.lordofthecraft.arche.interfaces.Economy;
-import net.lordofthecraft.arche.interfaces.Persona;
-import net.lordofthecraft.arche.interfaces.Transaction;
+import net.lordofthecraft.arche.interfaces.*;
 import net.lordofthecraft.arche.persona.ArcheEconomy;
 import net.lordofthecraft.arche.persona.ArchePersona;
 import net.lordofthecraft.arche.util.ProtocolUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.json.simple.parser.ParseException;
@@ -31,7 +30,7 @@ public class HeadRequest {
 	private static int totalid = 0;
 	private int id;
 	private Player requester;
-	private Persona reqPersona;
+	private int reqPersona;
 	private UUID approver;
 	private String texture;
 	private int amount;
@@ -39,7 +38,7 @@ public class HeadRequest {
 	// Final Player Build
 	public HeadRequest(Player requester, String skin, int amount, UUID approver, boolean silent) {
 		this.requester = requester;
-		this.reqPersona = ArcheCore.getPersona(requester);
+		this.reqPersona = ArcheCore.getPersona(requester).getPersonaId();
 		this.approver = approver;
 		this.texture = skin;
 		this.amount = amount;
@@ -53,19 +52,18 @@ public class HeadRequest {
 	}
 
 	// Loading from SQLite
-	public HeadRequest(int id, int reqPersonaID, String skin, int amount, UUID approver) {
-		this.reqPersona = ArcheCore.getPersona(reqPersonaID).getPersona();
-		if (reqPersona != null) {
-			this.requester = reqPersona.getPlayer();
+	public HeadRequest(int id, int reqPersonaID, String skin, int amount, String approver) {
+		this.reqPersona = reqPersonaID;
+		this.requester = ArcheCore.getPersona(reqPersonaID).getOfflinePlayer().getPlayer();
+		if (approver != null) {
+			this.approver = UUID.fromString(approver);
 		} else {
-			HeadEmporium.get().getLogger().warning("UNABLE TO LOAD PAST REQUEST FOR PERSONA ID " + reqPersonaID + ". CONSIDER REMOVING FROM THE DATABASE.");
-			return;
+			this.approver = null;
 		}
-		this.approver = approver;
 		this.texture = skin;
 		this.amount = amount;
 		this.id = id;
-		if (id > totalid) {
+		if (id >= totalid) {
 			totalid = id + 1;
 		}
 		allRequests.add(this);
@@ -75,17 +73,17 @@ public class HeadRequest {
 
 	// Adds our request to the SQLite
 	public static void addRequest(HeadRequest req) {
-		/*String approver = null;
+		String approver = null;
 		if (req.approver != null) {
 			approver = req.approver.toString();
 		}
-		HeadEmporium.getReqsDb().setToken(req.id, approver, String.valueOf(req.reqPersona.getPersonaId()), req.texture, req.amount);*/
+		HeadEmporium.getReqsDb().setToken(req.id, approver, String.valueOf(req.reqPersona), req.texture, req.amount);
 		allRequests.add(req);
 	}
 
 	// Removes our request from the SQLite
 	public static void delRequest(HeadRequest req) {
-		//HeadEmporium.getReqsDb().removeToken(req.id, false);
+		HeadEmporium.getReqsDb().removeToken(req.id);
 		allRequests.remove(req);
 	}
 
@@ -94,20 +92,19 @@ public class HeadRequest {
 		ArrayList<UUID> pingedAlready = new ArrayList<>();
 		boolean pingMods = false;
 		for (HeadRequest req : allRequests) {
-			if (req.approver != null && !pingedAlready.contains(req.approver)) {
-				pingedAlready.add(req.approver);
-				req.pingRequest();
-			} else {
-				pingMods = true;
+			if (req.getRequester() != null && req.getRequester().isOnline()) {
+				if (req.approver != null && !pingedAlready.contains(req.approver)) {
+					pingedAlready.add(req.approver);
+					req.pingRequest();
+				} else {
+					pingMods = true;
+				}
 			}
 		}
 
 		if (pingMods) {
-			for (Player player : Bukkit.getOnlinePlayers()) {
-				if (player.hasPermission("head.mod")) {
-					player.sendMessage(HeadEmporium.PREFIX + "There are pending head requests.\nUse " + HeadEmporium.ALT_COLOR + "/heads modapprovals " + HeadEmporium.PREFIX + "to approve or deny it!");
-				}
-			}
+			String message = HeadEmporium.PREFIX + "There are pending head requests.\nUse " + HeadEmporium.ALT_COLOR + "/heads modapprovals " + HeadEmporium.PREFIX + "to approve or deny it!";
+			Bukkit.broadcast(message, "head.mod");
 		}
 	}
 
@@ -116,7 +113,7 @@ public class HeadRequest {
 		ArrayList<HeadRequest> output = new ArrayList<>();
 
 		for (HeadRequest req : allRequests) {
-			if (player.getUniqueId().equals(req.approver)) {
+			if (req.getRequester() != null && req.getRequester().isOnline() && player.getUniqueId().equals(req.approver)) {
 				output.add(req);
 			}
 		}
@@ -129,7 +126,7 @@ public class HeadRequest {
 		ArrayList<HeadRequest> output = new ArrayList<>();
 
 		for (HeadRequest req : allRequests) {
-			if (req.isModApproval()) {
+			if (req.getRequester() != null && req.getRequester().isOnline() && req.isModApproval()) {
 				output.add(req);
 			}
 		}
@@ -176,7 +173,7 @@ public class HeadRequest {
 		} else {
 			for (Player player : Bukkit.getOnlinePlayers()) {
 				if (player.hasPermission("head.mod")) {
-					player.sendMessage(HeadEmporium.PREFIX + requester.getPlayerListName() + " has requested a custom head.\nUse " + HeadEmporium.ALT_COLOR + "/heads modapprovals " + HeadEmporium.PREFIX + "to approve or deny it!");
+					player.sendMessage(HeadEmporium.PREFIX + ChatColor.stripColor(requester.getName()) + " has requested a custom head.\nUse " + HeadEmporium.ALT_COLOR + "/heads modapprovals " + HeadEmporium.PREFIX + "to approve or deny it!");
 				}
 			}
 		}
@@ -184,8 +181,14 @@ public class HeadRequest {
 
 	public String fufillRequest() {
 		ItemStack heads = getHeads();
-		InventoryUtil.addOrDropItem(reqPersona.getPlayer().getLocation(), reqPersona.getInventory(), heads);
-		return deleteRequest(false);
+		Inventory inv = getPersona().getInventory();
+		int firstEmpty = inv.firstEmpty();
+		if (firstEmpty != -1) {
+			inv.addItem(heads);
+			return deleteRequest(false);
+		} else {
+			return HeadEmporium.PREFIX + "That player does not have room in their inventory.";
+		}
 	}
 
 	public String deleteRequest(boolean deny) {
@@ -211,7 +214,14 @@ public class HeadRequest {
 	}
 
 	public Player getRequester() {
+		if (requester == null && getPersona() != null) {
+			requester = getPersona().getPlayer();
+		}
 		return requester;
+	}
+
+	public Persona getPersona() {
+		return ArcheCore.getPersonaControls().getPersonaById(reqPersona).getPersona();
 	}
 
 	public boolean isModApproval() {

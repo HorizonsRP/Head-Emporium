@@ -177,6 +177,11 @@ public class MainCommand extends BaseCommand {
 		}
 	}
 
+	@Cmd(value="Clears ALL approvlas, mod and player.", permission="head.admin")
+	public void purgeapprovals() {
+		msg(HeadEmporium.PREFIX + HeadEmporium.getReqsDb().purge());
+	}
+
 	private void tryBuildMenu(ArrayList<HeadRequest> requests, CommandSender sender, String title) {
 		if (requests.size() > 0) {
 			Player player = (Player) sender;
@@ -188,10 +193,12 @@ public class MainCommand extends BaseCommand {
 				ArrayList<String> lore = new ArrayList<>();
 				lore.add(ChatColor.GREEN + "" + ChatColor.BOLD + "Left Click to Approve");
 				lore.add(ChatColor.RED + "" + ChatColor.BOLD + "Right Click to Deny");
-				lore.add(HeadEmporium.PREFIX + ChatColor.ITALIC + "Requested by: " + req.getRequester().getPlayerListName());
+				lore.add(HeadEmporium.PREFIX + ChatColor.ITALIC + "Requested by: " + req.getRequester().getName());
 
 				meta.setLore(lore);
 				item.setItemMeta(meta);
+
+
 				icons.add(new Button() {
 					@Override
 					public ItemStack getItemStack(MenuAgent menuAgent) {
@@ -226,6 +233,8 @@ public class MainCommand extends BaseCommand {
 						}
 					}
 				});
+
+
 			}
 			List<Menu> menu = MenuUtil.createMultiPageMenu(null, ChatColor.BOLD + title, icons);
 			menu.get(0).openSession((Player) sender);
