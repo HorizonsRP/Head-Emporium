@@ -1,8 +1,8 @@
 name: HeadEmporium
-version: 1.14.4-R0.1
+version: 1.0
 main: co.lotc.heademporium.HeadEmporium
 api-version: 1.13
-depend: [Tythan, ArcheCore]
+depend: [Tythan]
 commands:
   heads:
     command: /<command>

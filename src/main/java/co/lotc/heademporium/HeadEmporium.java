@@ -10,9 +10,6 @@ import co.lotc.heademporium.sqlite.ReqsSQL;
 import co.lotc.heademporium.sqlite.ShopSQL;
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
-import net.lordofthecraft.arche.ArcheCore;
-import net.lordofthecraft.arche.interfaces.Economy;
-import net.lordofthecraft.arche.interfaces.Persona;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -272,16 +269,28 @@ public final class HeadEmporium extends JavaPlugin {
 
 	// Attempts to charge a player based on permissions & gamemode. Returns if 'payment' was accepted.
 	public static boolean safeCharge(Player player, float amount) {
-		if (player.hasPermission("head.free") || player.getGameMode().equals(GameMode.CREATIVE)) {
+		/*if (player.hasPermission("head.free") || player.getGameMode().equals(GameMode.CREATIVE)) {
 			return true;
 		}
 		Economy economy = ArcheCore.getControls().getEconomy();
 		Persona persona = ArcheCore.getPersona(player);
 		if (economy.has(persona, amount)) {
-			economy.depositPersona(persona, -amount, get(), "Player Head Purchase");
+			Transaction trans = new Transaction() {
+				@Override
+				public String getCause() {
+					return "Player Head Purchase";
+				}
+
+				@Override
+				public String getRegisteringPluginName() {
+					return "Head Emporium";
+				}
+			};
+			economy.depositPersona(persona, -amount, trans);
 			return true;
 		} else {
 			return false;
-		}
+		}*/
+		return true;
 	}
 }

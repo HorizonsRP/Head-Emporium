@@ -9,7 +9,6 @@ import co.lotc.core.command.annotate.Cmd;
 import co.lotc.core.command.annotate.Default;
 import co.lotc.heademporium.HeadEmporium;
 import co.lotc.heademporium.shop.ShopCategory;
-import net.lordofthecraft.arche.ArcheCore;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

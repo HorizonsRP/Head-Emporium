@@ -20,7 +20,7 @@ public class ReqsSQL extends Database{
 		SQLiteTokensTable = "CREATE TABLE IF NOT EXISTS " + SQLiteTableName + " (\n" +
 							"    ID INTEGER PRIMARY KEY,\n" +
 							"    APPROVER TEXT,\n" +
-							"    REQUESTER INTEGER NOT NULL,\n" +
+							"    REQUESTER TEXT NOT NULL,\n" +
 							"    TEXTURE TEXT NOT NULL,\n" +
 							"    AMOUNT INTEGER NOT NULL\n" +
 							");";
@@ -81,7 +81,7 @@ public class ReqsSQL extends Database{
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				new HeadRequest(rs.getInt("ID"),
-								rs.getInt("REQUESTER"),
+								rs.getString("REQUESTER"),
 								rs.getString("TEXTURE"),
 								rs.getInt("AMOUNT"),
 								rs.getString("APPROVER"));
@@ -104,7 +104,7 @@ public class ReqsSQL extends Database{
 			ps = conn.prepareStatement(stmt);
 			ps.setInt(1, id);
 			ps.setString(2, catOrApprov);
-			ps.setInt(3, Integer.parseInt(nameOrReq));
+			ps.setString(3, nameOrReq);
 			ps.setString(4, texture);
 			ps.setInt(5, (int) priceOrAmount);
 			ps.executeUpdate();

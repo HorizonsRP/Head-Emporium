@@ -5,11 +5,6 @@ import co.lotc.core.util.MojangCommunicator;
 import com.comphenix.protocol.wrappers.WrappedSignedProperty;
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
-import net.lordofthecraft.arche.ArcheCore;
-import net.lordofthecraft.arche.interfaces.*;
-import net.lordofthecraft.arche.persona.ArcheEconomy;
-import net.lordofthecraft.arche.persona.ArchePersona;
-import net.lordofthecraft.arche.util.ProtocolUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -30,7 +25,6 @@ public class HeadRequest {
 	private static int totalid = 0;
 	private int id;
 	private Player requester;
-	private int reqPersona;
 	private UUID approver;
 	private String texture;
 	private int amount;
@@ -38,7 +32,6 @@ public class HeadRequest {
 	// Final Player Build
 	public HeadRequest(Player requester, String skin, int amount, UUID approver, boolean silent) {
 		this.requester = requester;
-		this.reqPersona = ArcheCore.getPersona(requester).getPersonaId();
 		this.approver = approver;
 		this.texture = skin;
 		this.amount = amount;
@@ -52,13 +45,16 @@ public class HeadRequest {
 	}
 
 	// Loading from SQLite
-	public HeadRequest(int id, int reqPersonaID, String skin, int amount, String approver) {
-		this.reqPersona = reqPersonaID;
-		this.requester = ArcheCore.getPersona(reqPersonaID).getOfflinePlayer().getPlayer();
+	public HeadRequest(int id, String requester, String skin, int amount, String approver) {
 		if (approver != null) {
 			this.approver = UUID.fromString(approver);
 		} else {
 			this.approver = null;
+		}
+		if (requester != null) {
+			this.requester = HeadEmporium.get().getServer().getPlayer(UUID.fromString(requester));
+		} else {
+			this.requester = null;
 		}
 		this.texture = skin;
 		this.amount = amount;
@@ -77,7 +73,7 @@ public class HeadRequest {
 		if (req.approver != null) {
 			approver = req.approver.toString();
 		}
-		HeadEmporium.getReqsDb().setToken(req.id, approver, String.valueOf(req.reqPersona), req.texture, req.amount);
+		HeadEmporium.getReqsDb().setToken(req.id, approver, req.requester.getUniqueId().toString(), req.texture, req.amount);
 		allRequests.add(req);
 	}
 
@@ -135,7 +131,7 @@ public class HeadRequest {
 	}
 
 	public static boolean samePerson(Player origin, UUID other) {
-		if (other == null) {
+		/*if (other == null) {
 			return false;
 		}
 		try {
@@ -158,6 +154,7 @@ public class HeadRequest {
 				e.printStackTrace();
 			}
 		}
+		return false;*/
 		return false;
 	}
 
@@ -181,7 +178,7 @@ public class HeadRequest {
 
 	public String fufillRequest() {
 		ItemStack heads = getHeads();
-		Inventory inv = getPersona().getInventory();
+		Inventory inv = getRequester().getInventory();
 		int firstEmpty = inv.firstEmpty();
 		if (firstEmpty != -1) {
 			inv.addItem(heads);
@@ -214,15 +211,15 @@ public class HeadRequest {
 	}
 
 	public Player getRequester() {
-		if (requester == null && getPersona() != null) {
+		/*if (requester == null && getPersona() != null) {
 			requester = getPersona().getPlayer();
-		}
+		}*/
 		return requester;
 	}
 
-	public Persona getPersona() {
+	/*public Persona getPersona() {
 		return ArcheCore.getPersonaControls().getPersonaById(reqPersona).getPersona();
-	}
+	}*/
 
 	public boolean isModApproval() {
 		return approver == null;

@@ -7,7 +7,6 @@ import co.lotc.core.bukkit.menu.icon.Button;
 import co.lotc.core.bukkit.menu.icon.Icon;
 import co.lotc.core.bukkit.util.InventoryUtil;
 import co.lotc.heademporium.HeadEmporium;
-import net.lordofthecraft.arche.ArcheCore;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -77,9 +76,9 @@ public class HeadShop {
 	//// MENUS ////
 
 	public Icon getAsShopIcon(String texture, String name, float price) {
-		String currency = ArcheCore.getEconomyControls().currencyNamePlural();
+		String currency = "MONEY_PLURAL";
 		if (price == 1f) {
-			currency = ArcheCore.getEconomyControls().currencyNameSingular();
+			currency = "MONEY_SINGULAR";
 		}
 
 		ItemStack item = HeadEmporium.getHead(texture, 1);
@@ -174,9 +173,9 @@ public class HeadShop {
 			}
 
 			float totalPrice = price * amount;
-			String currency = ArcheCore.getEconomyControls().currencyNamePlural();
+			String currency = "MONEY_PLURAL";
 			if (totalPrice == 1f) {
-				currency = ArcheCore.getEconomyControls().currencyNameSingular();
+				currency = "MONEY_SINGULAR";
 			}
 
 			ItemStack newItem = item.clone();

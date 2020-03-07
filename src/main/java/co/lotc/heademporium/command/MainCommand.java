@@ -8,9 +8,6 @@ import co.lotc.core.command.annotate.*;
 import co.lotc.core.util.MojangCommunicator;
 import co.lotc.heademporium.HeadEmporium;
 import co.lotc.heademporium.HeadRequest;
-import net.lordofthecraft.arche.ArcheCore;
-import net.lordofthecraft.arche.interfaces.Persona;
-import net.lordofthecraft.arche.util.ProtocolUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -71,15 +68,16 @@ public class MainCommand extends BaseCommand {
 					String skin = null;
 
 					Player otherPlayer = Bukkit.getPlayer(uuid);
-					if (otherPlayer != null) {
-						String newSkin = ArcheCore.getControls().getSkinCache().getCurrentSkinString(otherPlayer);
+					// TODO - Load Persona Skin (getCurrentSkinString)
+					/*if (otherPlayer != null) {
+						String newSkin = ArcheCore.getPersona(otherPlayer).getSkin().getURL();
 						if (newSkin != null) {
 							skin = newSkin;
 						}
-					}
+					}*/
 
 					if (skin == null) {
-						skin = ProtocolUtil.requestSkin(uuid).getValue();
+						skin = MojangCommunicator.requestSkin(uuid).getAsString();
 					}
 
 					if (HeadEmporium.DEBUGGING) {
@@ -93,7 +91,7 @@ public class MainCommand extends BaseCommand {
 						msg(HeadEmporium.PREFIX + "Request sent to " + HeadEmporium.ALT_COLOR + '"' + playername + '"' + HeadEmporium.PREFIX + "!");
 					}
 				} else {
-					msg(HeadEmporium.PREFIX + "You do not have the " + ArcheCore.getEconomyControls().currencyNamePlural() + " for this purchase.");
+					msg(HeadEmporium.PREFIX + "You do not have the MONEY_TYPE for this purchase.");
 				}
 			} catch (NullPointerException npe) {
 				msg(HeadEmporium.PREFIX + "Unable to find a player by that name.");
@@ -138,7 +136,7 @@ public class MainCommand extends BaseCommand {
 					msg(HeadEmporium.PREFIX + "Your request is pending moderator approval.");
 				}
 			} else {
-				msg(HeadEmporium.PREFIX + "You do not have the " + ArcheCore.getEconomyControls().currencyNamePlural() + " for this purchase.");
+				msg(HeadEmporium.PREFIX + "You do not have the MONEY_TYPE for this purchase.");
 			}
 		} else {
 			msg(CONSOLE_DENY);
