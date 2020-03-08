@@ -36,8 +36,8 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.ow2.asm:asm-commons:7.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.ow2.asm:asm-tree:7.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.ow2.asm:asm-analysis:7.1" level="project" />
-    <orderEntry type="library" name="Maven: co.lotc:tythan-bukkit:0.7.2" level="project" />
-    <orderEntry type="library" name="Maven: co.lotc:tythan-common:0.7.2" level="project" />
+    <orderEntry type="library" name="Maven: co.lotc:tythan-bukkit:0.7.1" level="project" />
+    <orderEntry type="library" name="Maven: co.lotc:tythan-common:0.7.1" level="project" />
     <orderEntry type="library" name="Maven: com.comphenix.protocol:ProtocolLib:4.5.0" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-all:4.0.23.Final" level="project" />
     <orderEntry type="library" name="Maven: org.spigotmc:spigot-api:1.14-R0.1-SNAPSHOT" level="project" />
