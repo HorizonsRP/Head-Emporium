@@ -43,7 +43,7 @@ public final class HeadEmporium extends JavaPlugin {
 	public static final String ALT_COLOR = "" + ChatColor.BLUE;
 	public static final UUID HEAD_UUID = UUID.fromString("0dfd78ed-e1c2-4881-b207-39847503d027");
 	public static final String DEFAULT_TEXTURE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDVjNmRjMmJiZjUxYzM2Y2ZjNzcxNDU4NWE2YTU2ODNlZjJiMTRkNDdkOGZmNzE0NjU0YTg5M2Y1ZGE2MjIifX19";
-	public static final boolean DEBUGGING = false;
+	public static final boolean DEBUGGING = true;
 
 	// Time between pinging online players about their pending requests.
 	private static final long PING_BREAK = 6000;

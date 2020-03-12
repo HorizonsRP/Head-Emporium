@@ -131,11 +131,14 @@ public class HeadRequest {
 	}
 
 	public static boolean samePerson(Player origin, UUID other) {
-		/*if (other == null) {
+		if (other == null) {
 			return false;
 		}
 		try {
-			Account acc = ArcheCore.getControls().getAccountHandler().getAccount(origin);
+			if (origin.getUniqueId().equals(other)) {
+				return true;
+			}
+			/*Account acc = ArcheCore.getControls().getAccountHandler().getAccount(origin);
 			if (acc.hasForumId() &&
 				acc.getForumId() == ArcheCore.getControls().getAccountHandler().getAccount(other).getForumId()) {
 				return true;
@@ -148,13 +151,12 @@ public class HeadRequest {
 						}
 					}
 				}
-			}
+			}*/
 		} catch (Exception e) {
 			if (HeadEmporium.DEBUGGING) {
 				e.printStackTrace();
 			}
 		}
-		return false;*/
 		return false;
 	}
 

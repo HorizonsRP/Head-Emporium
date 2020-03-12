@@ -8,6 +8,7 @@ import co.lotc.core.command.annotate.*;
 import co.lotc.core.util.MojangCommunicator;
 import co.lotc.heademporium.HeadEmporium;
 import co.lotc.heademporium.HeadRequest;
+import com.google.gson.JsonObject;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -16,10 +17,8 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.io.IOException;
+import java.util.*;
 
 public class MainCommand extends BaseCommand {
 
@@ -59,7 +58,6 @@ public class MainCommand extends BaseCommand {
 	public void request(CommandSender sender,
 						@Arg(value="Player Name")String playername,
 						@Arg(value="Amount")@Range(min = 1, max = 64)@Default("1") int amount) {
-
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
 			try {
@@ -77,7 +75,8 @@ public class MainCommand extends BaseCommand {
 					}*/
 
 					if (skin == null) {
-						skin = MojangCommunicator.requestSkin(uuid).getAsString();
+						JsonObject obj = MojangCommunicator.requestSkin(uuid);
+						skin = obj.get("value").getAsString();
 					}
 
 					if (HeadEmporium.DEBUGGING) {
@@ -103,7 +102,7 @@ public class MainCommand extends BaseCommand {
 				if (HeadEmporium.DEBUGGING) {
 					npe.printStackTrace();
 				}
-			} catch (Exception e) {
+			} catch (IOException e) {
 				msg(HeadEmporium.PREFIX + "That head has been requested too frequently! Please wait a moment.");
 				if (HeadEmporium.safeCharge(player, -(amount * HeadEmporium.BASE_PRICE))) {
 					msg(HeadEmporium.PREFIX + "Your minas have been refunded.");

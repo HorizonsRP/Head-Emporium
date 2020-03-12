@@ -2,9 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4a2f0bc-8902-41fe-8c9e-2aaef7c7a4e6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_comphenix_protocol_ProtocolLib_4_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_spigotmc_spigot_1_14_R0_1_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_spigotmc_spigot_api_1_14_R0_1_SNAPSHOT.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Head Emporium.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Head Emporium.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/HeadEmporium.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/HeadEmporium.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/HeadRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/HeadRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/command/MainCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/command/MainCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HeadEmporium.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/HeadEmporium.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/HeadEmporium.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/HeadEmporium.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/command/HeadCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/command/HeadCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/command/MainCommand$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/command/MainCommand$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/command/MainCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/command/MainCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/shop/HeadShop.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/shop/HeadShop.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/shop/ShopCategory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/shop/ShopCategory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/sqlite/CategorySQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/sqlite/CategorySQL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/sqlite/ReqsSQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/sqlite/ReqsSQL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/sqlite/ShopSQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/sqlite/ShopSQL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
