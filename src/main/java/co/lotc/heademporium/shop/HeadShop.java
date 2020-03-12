@@ -194,7 +194,7 @@ public class HeadShop {
 				@Override
 				public void click(MenuAction menuAction) {
 					newItem.setLore(null);
-					purchaseHeads(newItem, totalPrice, menuAction.getPlayer());
+					HeadShop.purchaseHeads(newItem, totalPrice, menuAction.getPlayer());
 				}
 			};
 			icons.add(icon);
@@ -203,7 +203,7 @@ public class HeadShop {
 		return Menu.fromIcons(action.getMenuAgent().getMenu(), ChatColor.BOLD + "Amount to Purchase", icons);
 	}
 
-	private void purchaseHeads(ItemStack heads, float price, Player player) {
+	private static void purchaseHeads(ItemStack heads, float price, Player player) {
 		if (HeadEmporium.safeCharge(player, price)) {
 			InventoryUtil.addOrDropItem(player, heads);
 		}
