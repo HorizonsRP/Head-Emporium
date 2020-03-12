@@ -138,6 +138,7 @@ public class HeadRequest {
 			if (origin.getUniqueId().equals(other)) {
 				return true;
 			}
+			// TODO - Link to RPPersonas to get active skin.
 			/*Account acc = ArcheCore.getControls().getAccountHandler().getAccount(origin);
 			if (acc.hasForumId() &&
 				acc.getForumId() == ArcheCore.getControls().getAccountHandler().getAccount(other).getForumId()) {
