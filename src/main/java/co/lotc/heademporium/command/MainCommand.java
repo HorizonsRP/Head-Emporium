@@ -74,10 +74,8 @@ public class MainCommand extends BaseCommand {
 						}
 					}*/
 
-					if (skin == null) {
-						JsonObject obj = MojangCommunicator.requestSkin(uuid);
-						skin = obj.get("value").getAsString();
-					}
+					JsonObject obj = MojangCommunicator.requestSkin(uuid);
+					skin = obj.get("value").getAsString();
 
 					if (HeadEmporium.DEBUGGING) {
 						plugin.getLogger().info("UUID: " + uuid + " | SKIN: " + skin);
