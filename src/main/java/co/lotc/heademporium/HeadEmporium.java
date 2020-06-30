@@ -100,6 +100,9 @@ public final class HeadEmporium extends JavaPlugin {
 
 	// Load all data from config/database
 	private void init() {
+		// Save our config
+		saveDefaultConfig();
+
 		// Load our SQLite
 		shopdb = new ShopSQL(this);
 		shopdb.load();

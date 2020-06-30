@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a4a2f0bc-8902-41fe-8c9e-2aaef7c7a4e6" name="Default Changelist" comment="" />
+    <list default="true" id="a4a2f0bc-8902-41fe-8c9e-2aaef7c7a4e6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/HeadEmporium.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/lotc/heademporium/HeadEmporium.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HeadEmporium.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/HeadEmporium.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/HeadEmporium$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/HeadEmporium$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/HeadEmporium.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/lotc/heademporium/HeadEmporium.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
