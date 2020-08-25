@@ -8,13 +8,6 @@
     <name>HeadEmporium</name>
     <version>1.16.2.1</version>
 
-    <distributionManagement>
-        <repository>
-            <id>lotc-release</id>
-            <url>https://repo.lordofthecraft.net/artifactory/lotc-releases/</url>
-        </repository>
-    </distributionManagement>
-
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,7 +16,7 @@
     <build>
         <defaultGoal>clean package install</defaultGoal>
         <sourceDirectory>src/main/java</sourceDirectory>
-        <finalName>${project.name}</finalName>
+        <finalName>${project.name}-${project.version}</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
