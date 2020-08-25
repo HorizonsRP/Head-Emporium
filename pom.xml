@@ -6,7 +6,7 @@
     <groupId>co.lotc</groupId>
     <artifactId>HeadEmporium</artifactId>
     <name>HeadEmporium</name>
-    <version>1.16.0.1</version>
+    <version>1.16.2.1</version>
 
     <distributionManagement>
         <repository>
@@ -77,24 +77,13 @@
         <dependency>
             <groupId>com.destroystokyo.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.16.1-R0.1-SNAPSHOT</version>
+            <version>1.16.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>co.lotc</groupId>
             <artifactId>tythan-bukkit</artifactId>
-            <version>0.7.3</version>
-        </dependency>
-        <dependency>
-            <groupId>com.comphenix.protocol</groupId>
-            <artifactId>ProtocolLib</artifactId>
-            <version>4.6.0-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.github.jengelman.gradle.plugins</groupId>
-                    <artifactId>shadow</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>0.7.9</version>
         </dependency>
     </dependencies>
 </project>

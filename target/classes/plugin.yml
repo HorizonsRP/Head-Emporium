@@ -1,5 +1,5 @@
 name: HeadEmporium
-version: 1.0
+version: 1.16.2.1
 main: co.lotc.heademporium.HeadEmporium
 api-version: 1.13
 depend: [Tythan]
