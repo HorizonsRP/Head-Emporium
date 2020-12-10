@@ -202,7 +202,7 @@ public final class HeadEmporium extends JavaPlugin {
 	private Collection<String> categoryList() {
 		Collection<String> names = new ArrayList<>();
 		for (ShopCategory c : headShop.getCategories()) {
-			names.add(c.getName());
+			names.add(c.getName().replace(' ', '_'));
 		}
 
 		return names;

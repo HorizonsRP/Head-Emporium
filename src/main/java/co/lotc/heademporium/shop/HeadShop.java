@@ -221,7 +221,7 @@ public class HeadShop {
 	// Get a category by a given name.
 	public ShopCategory getCategoryByName(String name) {
 		for (ShopCategory sc : categories) {
-			if (sc.getName().equalsIgnoreCase(name)) {
+			if (sc.getName().replace(' ', '_').equalsIgnoreCase(name)) {
 				return sc;
 			}
 		}
